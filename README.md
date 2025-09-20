@@ -1,71 +1,54 @@
-# Owlbear Rodeo Dice
+# 骰子
 
-Beautiful 3D dice extension for d20 based systems
+适用于 d20 规则的精美 3D 骰子扩展，提供平滑的动画与真实的物理掷骰体验。
 
-![Example](/docs/header.jpg)
+> 本仓库基于 [Owlbear Rodeo Dice](https://github.com/owlbear-rodeo/dice) 翻译为简体中文，原作者为 Owlbear Rodeo。汉化维护者：ZJHSteven（<https://github.com/ZJHSteven/dice>）。如需反馈非本地化问题或了解最新进展，请以原仓库为准；本仓库仅负责界面与文档汉化。
 
-## Installing
+![示例](/docs/header.jpg)
 
-The extension can be installed from the [store page](https://extensions.owlbear.rodeo/dice).
+## 安装
 
-## How it Works
+1. 打开 [Owlbear Rodeo 扩展商店页面](https://extensions.owlbear.rodeo/dice)。
+2. 点击页面中的“安装”按钮，并在提示中确认以将扩展添加到您的 Owlbear Rodeo 空间。
+3. 安装完成后，在 Owlbear Rodeo 界面左侧扩展栏中找到“骰子”图标即可打开汉化版扩展。
 
-This project uses [React](https://reactjs.org/) for UI, [Three.js](https://threejs.org/) for rendering and [Rapier](https://rapier.rs/) for physics.
+## 使用提示
 
-The physics simulation is used to both generate the animation for the roll as well as the final roll values.
+- 点击左侧骰子列表可以将对应骰子加入骰子盘。
+- 按下“掷骰”按钮后会启动 3D 物理模拟，掷骰动画与结果会同步推送给房间内所有玩家。
+- 右下角默认展示其他玩家的骰子预览，点击可展开查看完整动画。
+- 通过侧栏的“眼睛”图标可以切换私密掷骰；使用“+/-”图标可以为下一次掷骰添加加值或优势/劣势；“放大镜”图标可以快速复掷最近的记录。
 
-> Wait is it really random if physics is used to determine the result? How do I know the dice rolls are fair?
+## 工作原理
 
-Short answer yes, the dice are fair. Long answer [here's a statistical analysis](https://blog.owlbear.rodeo/are-owlbear-rodeos-dice-fair/) of the rolling methodology.
+本扩展采用 [React](https://reactjs.org/) 构建界面、[Three.js](https://threejs.org/) 渲染 3D 场景，并使用 [Rapier](https://rapier.rs/) 进行物理模拟。掷骰结果依据物理模拟产生，同时用于驱动动画和最终点数。
 
-In order to sync rolls over the network efficiently we rely on the fact the Rapier is a deterministic physics engine. This means that across two different computers we'll get the same result given the same initial parameters.
+Rapier 具备确定性，意味着在不同计算机上给出相同初始条件会得到一致的结果。因此扩展只需同步掷骰的初始参数，便可降低网络负担并确保所有客户端呈现一致的动画。
 
-So we only need to make sure that all the initial parameters are synced and then each client can run its own simulation and end up with the correct animation.
+关于公平性，原作者提供了 [统计分析](https://blog.owlbear.rodeo/are-owlbear-rodeos-dice-fair/) 说明掷骰结果符合公平分布。
 
-To try out the dice roller outside of Owlbear Rodeo you can head to <https://dice.owlbear.rodeo/>.
+想在 Owlbear Rodeo 之外体验掷骰器，可访问 <https://dice.owlbear.rodeo/>。
 
-## Building
+## 本地开发流程
 
-This project uses [Yarn](https://yarnpkg.com/) as a package manager.
+以下步骤提供一个最小可运行示例，便于快速验证汉化效果：
 
-To install all the dependencies run:
+1. 安装依赖：在项目根目录执行 `yarn`。
+2. 启动开发服务器：运行 `yarn dev`，按照命令行提示访问本地地址（通常为 <http://localhost:5173/>）。
+3. 构建生产版本：执行 `yarn build`，构建结果将输出至 `dist` 目录。
+4. 可选：执行 `yarn preview` 检视构建版本的运行效果。
 
-`yarn`
+## 项目结构
 
-To run in a development mode run:
+- `src`：源代码目录，包含 UI、状态管理以及物理模拟相关模块。
+- `src/plugin`：与 Owlbear Rodeo 扩展集成的入口代码。
+- `src/sets/diceSets.ts`：如需基于现有样式创建新骰子组合，可在此文件中调整配置。
+- `src/materials` / `src/meshes` / `src/colliders` / `src/previews`：分别存放材质、网格、碰撞体与预览图资源。
 
-`yarn dev`
+## 许可证
 
-To make a production build run:
+遵循 GNU GPLv3 许可证。
 
-`yarn build`
+## 贡献说明
 
-## Project Structure
-
-All source files can be found in the `src` folder.
-
-If you'd like to create a new dice set with the existing dice styles edit the `diceSets.ts` file in the `sets` folder.
-
-If you'd like to add a new dice style the 3D models for the dice are split across four folders: `materials`, `meshes`, `colliders` and `previews`.
-
-The `materials` folder contains the PBR materials for each dice style.
-
-The `meshes` folder contains the 3D geometry used for the dice.
-
-The `colliders` folder contains the simplified collider geometry for the dice.
-
-The `previews` folder contains 2D image previews for each dice.
-
-All the code specific for the Owlbear Rodeo extension is in the `plugin` folder.
-
-## License
-
-GNU GPLv3
-
-## Contributing
-
-This project is provided as an example of how to use the Owlbear Rodeo SDK. As such it is unlikely that we will accept pull requests for new features.
-
-Instead we encourage you to fork this repository and build the dice roller of your dreams.
-
-Copyright (C) 2023 Owlbear Rodeo
+本项目旨在提供中文本地化示例，不计划接受功能性新特性。欢迎基于本仓库二次开发您自己的骰子扩展；如涉及核心功能改动，请优先向上游仓库提交议题或合并请求。
