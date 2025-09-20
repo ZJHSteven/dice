@@ -11,6 +11,7 @@ import { RerollDiceIcon } from "../icons/RerollDiceIcon";
 import { useDiceRollStore } from "../dice/store";
 import { Die } from "../types/Die";
 import { DicePreview } from "../previews/DicePreview";
+import { formatDieName, uiText } from "../i18n/text";
 
 export function DieMenu({ die, onClose }: { die: Die; onClose: () => void }) {
   const value = useDiceRollStore((state) => state.rollValues[die.id]);
@@ -21,17 +22,13 @@ export function DieMenu({ die, onClose }: { die: Die; onClose: () => void }) {
       <Fade in timeout={100}>
         <Card sx={{ borderRadius: "20px", transform: "translateX(-50%)" }}>
           <Stack direction="row" alignItems="center" gap={1}>
-            <Tooltip
-              title={`${die.style.slice(0, 1)}${die.style
-                .slice(1)
-                .toLowerCase()} ${die.type}`}
-            >
+            <Tooltip title={formatDieName(die)}>
               <div style={{ display: "flex" }}>
                 <DicePreview diceStyle={die.style} diceType={die.type} />
               </div>
             </Tooltip>
             <Typography variant="h6">{value}</Typography>
-            <Tooltip title="Reroll">
+            <Tooltip title={uiText.tooltip.reroll}>
               <IconButton onClick={() => reroll([die.id])}>
                 <RerollDiceIcon />
               </IconButton>

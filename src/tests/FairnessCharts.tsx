@@ -11,6 +11,7 @@ import { LinePlot } from "@mui/x-charts/LineChart";
 import { ResponsiveChartContainer } from "@mui/x-charts/ResponsiveChartContainer";
 import { useMemo } from "react";
 import { Die } from "../types/Die";
+import { formatAxisLabel, formatSseLabel, uiText } from "../i18n/text";
 
 export default function FairnessCharts({
   die,
@@ -38,7 +39,7 @@ export default function FairnessCharts({
       case "D100":
         return 100;
       default:
-        throw Error("Unable to find die count for type" + die.type);
+        throw Error(`无法根据骰子类型 ${die.type} 推断面数`);
     }
   }, [die]);
 
@@ -62,7 +63,7 @@ export default function FairnessCharts({
     [expectedValue]
   );
 
-  // Critical value to pass the Chi-squared test at a 0.05 significance level
+  // 说明：卡方检验阈值用于判断采样结果是否落在可信区间内。
   const criticalValue = useMemo<number>(() => {
     switch (die.type) {
       case "D4":
@@ -80,7 +81,7 @@ export default function FairnessCharts({
       case "D100":
         return 124.342;
       default:
-        throw Error("Unable to find critical value for type" + die.type);
+        throw Error(`无法为骰子类型 ${die.type} 计算卡方检验阈值`);
     }
   }, [die]);
 
@@ -95,14 +96,14 @@ export default function FairnessCharts({
 
   return (
     <Stack width="100%" gap={1}>
-      <Tooltip title="Sum of Squares Error">
+      <Tooltip title={uiText.tooltip.sumOfSquares}>
         <Typography
           variant="caption"
           textAlign="center"
           color={isFair ? "success.main" : "warning.main"}
           my={1}
         >
-          SSE: {sumSquaredError.toFixed(2)}{" "}
+          {formatSseLabel(sumSquaredError)}{" "}
           {isFair && (
             <VerifiedRounded
               sx={{ fontSize: "1.1rem", verticalAlign: "top" }}
@@ -129,12 +130,12 @@ export default function FairnessCharts({
           {
             type: "bar",
             data: yAxis,
-            label: "Rolled",
+            label: uiText.fairness.rolledSeries,
           },
           {
             type: "line",
             data: expectedValueYAxis,
-            label: "Expected",
+            label: uiText.fairness.expectedSeries,
           },
         ]}
         height={300}
@@ -143,14 +144,12 @@ export default function FairnessCharts({
         <BarPlot />
         <LinePlot />
         <ChartsXAxis
-          label={`${die.style.slice(0, 1)}${die.style.slice(1).toLowerCase()} ${
-            die.type
-          } Value`}
+          label={formatAxisLabel(die.style, die.type)}
           position="bottom"
           axisId="roll-values"
         />
         <ChartsYAxis
-          label="No. of Rolls"
+          label={uiText.fairness.yAxisLabel}
           position="left"
           axisId="number-rolls"
         />

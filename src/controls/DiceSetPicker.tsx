@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 
 import { diceSets } from "../sets/diceSets";
 import { useDiceControlsStore } from "./store";
+import { uiText } from "../i18n/text";
 
 const PreviewImage = styled("img")({
   width: "32px",
@@ -29,7 +30,7 @@ export function DiceSetPicker() {
   return (
     <>
       <IconButton
-        aria-label="change dice set"
+        aria-label={uiText.diceSetPicker.changeAria}
         id="dice-set-button"
         aria-controls={open ? "dice-set-menu" : undefined}
         aria-haspopup="true"

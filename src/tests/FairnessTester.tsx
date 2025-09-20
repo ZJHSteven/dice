@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import { getDiceToRoll, useDiceControlsStore } from "../controls/store";
+import { formatFairnessCompleted, formatFairnessProgress, uiText } from "../i18n/text";
 import { useDiceRollStore } from "../dice/store";
 import { Die } from "../types/Die";
 import Backdrop from "@mui/material/Backdrop";
@@ -199,7 +200,7 @@ export function FairnessTester() {
                     }}
                     fontSize="small"
                   />
-                  <Typography variant="caption">Results</Typography>
+                  <Typography variant="caption">{uiText.fairness.panelResults}</Typography>
                 </Button>
                 <Collapse in={showResults} unmountOnExit>
                   <Stack
@@ -225,10 +226,8 @@ export function FairnessTester() {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <Typography variant="h6" id="rolls-label">
-                  Rolls
-                </Typography>
-                <Tooltip title="Close Tester" disableInteractive>
+                <Typography variant="h6" id="rolls-label">{uiText.fairness.rollsLabel}</Typography>
+                <Tooltip title={uiText.tooltip.closeTester} disableInteractive>
                   <IconButton onClick={() => toggleOpen()} disabled={active}>
                     <CloseIcon />
                   </IconButton>
@@ -260,7 +259,7 @@ export function FairnessTester() {
                   value={((rolledValues.length + 1) / numberRolls) * 100}
                 />
                 <FormLabel htmlFor="testing-progress">
-                  {rolledValues.length + 1} of {numberRolls} Rolls
+                  {formatFairnessProgress(rolledValues.length + 1, numberRolls)}
                 </FormLabel>
               </Stack>
             )}
@@ -270,7 +269,7 @@ export function FairnessTester() {
                 color="text.secondary"
                 textAlign="center"
               >
-                test dice fairness by rolling many times
+                {uiText.fairness.sliderDescription}
               </Typography>
             )}
             {finished && (
@@ -279,7 +278,7 @@ export function FairnessTester() {
                 color="text.secondary"
                 textAlign="center"
               >
-                {rolledValues.length} of {numberRolls} rolls completed
+                {formatFairnessCompleted(rolledValues.length, numberRolls)}
               </Typography>
             )}
             {starting && (
@@ -289,7 +288,7 @@ export function FairnessTester() {
                 fullWidth
                 onClick={() => handleStart()}
               >
-                Start
+                {uiText.fairness.start}
               </Button>
             )}
             {active && (
@@ -298,7 +297,7 @@ export function FairnessTester() {
                 fullWidth
                 onClick={() => handleStop()}
               >
-                Stop
+                {uiText.fairness.stop}
               </Button>
             )}
             {finished && (
@@ -312,7 +311,7 @@ export function FairnessTester() {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Explain
+                  {uiText.fairness.explain}
                 </Button>
                 {rolledDie && (
                   <ExportButton
@@ -328,7 +327,7 @@ export function FairnessTester() {
                 fullWidth
                 onClick={() => handleRestart()}
               >
-                Restart
+                {uiText.fairness.restart}
               </Button>
             )}
           </Stack>
@@ -366,7 +365,7 @@ function ExportButton({
       href={url}
       download={`${rolledDie.style}-${rolledDie.type}-rolls-${rolledValues.length}.txt`}
     >
-      Export
+      {uiText.fairness.export}
     </Button>
   );
 }
@@ -392,19 +391,19 @@ function Alerts({
   return (
     <>
       {bonus > 0 && (
-        <Alert severity="warning">Bonus not supported by fairness tester</Alert>
+        <Alert severity="warning">{uiText.fairness.bonusWarning}</Alert>
       )}
       {advantage && (
         <Alert severity="warning">
-          Advantage not supported by fairness tester
+          {uiText.fairness.advantageWarning}
         </Alert>
       )}
       {!singleDiceSelected && (
-        <Alert severity="warning">Select one dice to begin testing</Alert>
+        <Alert severity="warning">{uiText.fairness.selectWarning}</Alert>
       )}
       {numberRolls < 500 && (
         <Alert severity="warning">
-          Low number of rolls selected. This will give inaccurate results
+          {uiText.fairness.lowRollWarning}
         </Alert>
       )}
     </>

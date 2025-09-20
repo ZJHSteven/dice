@@ -16,6 +16,7 @@ import { DicePreview } from "../previews/DicePreview";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { getDiceToRoll, useDiceControlsStore } from "./store";
+import { advantageShortLabels, uiText } from "../i18n/text";
 
 export function DiceHistory() {
   const startRoll = useDiceRollStore((state) => state.startRoll);
@@ -52,7 +53,7 @@ export function DiceHistory() {
 
   return (
     <>
-      <Tooltip title="History" placement="top" disableInteractive>
+      <Tooltip title={uiText.tooltip.history} placement="top" disableInteractive>
         <IconButton
           id="history-button"
           aria-controls={open ? "history-menu" : undefined}
@@ -140,7 +141,7 @@ function RecentRollChip({
             </span>
           )}
           {recentRoll.advantage !== null && (
-            <span>{recentRoll.advantage === "ADVANTAGE" ? "Adv" : "Dis"}</span>
+            <span>{advantageShortLabels[recentRoll.advantage]}</span>
           )}
         </Stack>
       }
@@ -178,9 +179,9 @@ function EmptyMessage() {
       >
         <NoHistoryIcon />
       </Box>
-      <Typography variant="h6">No History</Typography>
+      <Typography variant="h6">{uiText.history.emptyTitle}</Typography>
       <Typography variant="caption" textAlign="center">
-        Roll dice to add to the roll history.
+        {uiText.history.emptyDescription}
       </Typography>
     </Stack>
   );

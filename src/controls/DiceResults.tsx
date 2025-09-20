@@ -12,6 +12,7 @@ import { DiceRoll } from "../types/DiceRoll";
 import { Die, isDie } from "../types/Die";
 import { Dice, isDice } from "../types/Dice";
 import { DicePreview } from "../previews/DicePreview";
+import { uiText } from "../i18n/text";
 
 export function DiceResults({
   diceRoll,
@@ -31,7 +32,7 @@ export function DiceResults({
   return (
     <Stack alignItems="center" maxHeight="calc(100vh - 100px)">
       <Tooltip
-        title={expanded ? "Hide Breakdown" : "Show Breakdown"}
+        title={expanded ? uiText.tooltip.hideBreakdown : uiText.tooltip.showBreakdown}
         disableInteractive
       >
         <Button

@@ -20,6 +20,7 @@ import { GradientOverlay } from "./GradientOverlay";
 import { useDiceRollStore } from "../dice/store";
 import { DiceResults } from "./DiceResults";
 import { getDiceToRoll, useDiceControlsStore } from "./store";
+import { advantageShortLabels, uiText } from "../i18n/text";
 import { DiceType } from "../types/DiceType";
 import { useDiceHistoryStore } from "./history";
 import { Die } from "../types/Die";
@@ -240,7 +241,7 @@ function DicePickedControls() {
             // @ts-ignore
             component="div"
           >
-            Roll
+            {uiText.rollButton}
           </Button>
         </Box>
       </ButtonBase>
@@ -253,7 +254,7 @@ function DicePickedControls() {
           transform: "translateX(-50%)",
         }}
       >
-        <Tooltip title="Clear" disableInteractive>
+        <Tooltip title={uiText.tooltip.clear} disableInteractive>
           <IconButton
             onClick={(e) => {
               e.stopPropagation();
@@ -278,7 +279,7 @@ function DicePickedControls() {
             color="white"
             variant="h6"
           >
-            {advantage === "ADVANTAGE" ? "Adv" : "Dis"}
+            {advantage ? advantageShortLabels[advantage] : ""}
           </Typography>
         )}
       </Stack>
@@ -343,7 +344,7 @@ function FinishedRollControls() {
           width="100%"
           alignItems="start"
         >
-          <Tooltip title="Reroll" sx={{ pointerEvents: "all" }}>
+          <Tooltip title={uiText.tooltip.reroll} sx={{ pointerEvents: "all" }}>
             <IconButton
               onClick={() => reroll()}
               sx={{ pointerEvents: "all", color: "white" }}
@@ -351,7 +352,7 @@ function FinishedRollControls() {
               <RerollDiceIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Clear" sx={{ pointerEvents: "all" }}>
+          <Tooltip title={uiText.tooltip.clear} sx={{ pointerEvents: "all" }}>
             <IconButton
               onClick={() => clearRoll()}
               sx={{ pointerEvents: "all", color: "white" }}
@@ -382,7 +383,7 @@ function FinishedRollControls() {
           />
         )}
         {roll?.hidden && (
-          <Tooltip title="Hidden Roll" sx={{ pointerEvents: "all" }}>
+          <Tooltip title={uiText.tooltip.hiddenRoll} sx={{ pointerEvents: "all" }}>
             <HiddenIcon htmlColor="white" />
           </Tooltip>
         )}

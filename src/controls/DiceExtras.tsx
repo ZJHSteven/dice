@@ -10,6 +10,7 @@ import { DieBonus } from "./DieBonus";
 import { DieAdvantage } from "./DieAdvantage";
 import { useDiceControlsStore } from "./store";
 import { useDiceRollStore } from "../dice/store";
+import { uiText } from "../i18n/text";
 
 export function DiceExtras() {
   const bonus = useDiceControlsStore((state) => state.diceBonus);
@@ -37,9 +38,9 @@ export function DiceExtras() {
 
   return (
     <>
-      <Tooltip title="Bonus" placement="top" disableInteractive>
+      <Tooltip title={uiText.tooltip.bonus} placement="top" disableInteractive>
         <IconButton
-          aria-label="more"
+          aria-label={uiText.extras.moreAria}
           id="more-button"
           aria-controls={open ? "more-menu" : undefined}
           aria-haspopup="true"

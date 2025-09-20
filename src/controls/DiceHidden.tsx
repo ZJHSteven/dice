@@ -6,6 +6,7 @@ import HiddenOffIcon from "@mui/icons-material/VisibilityRounded";
 
 import { useDiceControlsStore } from "./store";
 import { useDiceRollStore } from "../dice/store";
+import { uiText } from "../i18n/text";
 
 export function DiceHidden() {
   const hidden = useDiceControlsStore((state) => state.diceHidden);
@@ -23,7 +24,7 @@ export function DiceHidden() {
 
   return (
     <Tooltip
-      title={hidden ? "Show Roll" : "Hide Roll"}
+      title={hidden ? uiText.diceHidden.show : uiText.diceHidden.hide}
       placement="top"
       disableInteractive
     >

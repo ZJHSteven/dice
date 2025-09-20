@@ -26,6 +26,7 @@ import { AudioListenerProvider } from "../audio/AudioListenerProvider";
 import { Tray } from "../tray/Tray";
 import { useDebugStore } from "../debug/store";
 import { TraySuspense } from "../tray/TraySuspense";
+import { uiText } from "../i18n/text";
 
 export function PlayerTray({
   player,
@@ -103,7 +104,7 @@ function PlayerTrayResults({ player }: { player?: Player }) {
     <>
       {diceRoll?.hidden && (
         <Backdrop open sx={{ position: "absolute" }}>
-          <Tooltip title="Hidden Roll">
+          <Tooltip title={uiText.tooltip.hiddenRoll}>
             <HiddenIcon htmlColor="white" />
           </Tooltip>
         </Backdrop>

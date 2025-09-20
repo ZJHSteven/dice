@@ -12,6 +12,7 @@ import * as sunsetPreviews from "../previews/sunset";
 import * as walnutPreviews from "../previews/walnut";
 
 import allPreview from "../previews/all.png";
+import { formatDiceSetName } from "../i18n/text";
 
 const standardPreviews: Record<DiceStyle, string> = {
   GALAXY: galaxyPreviews.D20,
@@ -28,7 +29,7 @@ function createStandardSet(style: DiceStyle): DiceSet {
   const id = `${style}_STANDARD`;
   return {
     id,
-    name: `${style.toLowerCase()} dice`,
+    name: formatDiceSetName(style),
     dice: [
       { id: `${id}_D4`, type: "D4", style },
       { id: `${id}_D6`, type: "D6", style },
@@ -55,7 +56,7 @@ const standardSets = [
 
 const allSet: DiceSet = {
   id: "all",
-  name: "all",
+  name: "全部骰子",
   dice: standardSets.reduce(
     (prev, curr) => [...prev, ...curr.dice],
     [] as Die[]

@@ -1,3 +1,4 @@
+import { uiText } from "../i18n/text";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
@@ -15,7 +16,7 @@ export function DieAdvantage({ advantage, onChange }: DieAdvantageProps) {
       onChange={(_, value) => {
         onChange(value);
       }}
-      aria-label="Advantage / Disadvantage"
+      aria-label={uiText.dieAdvantage.aria}
       fullWidth
       sx={{
         borderRadius: 0,
@@ -26,12 +27,8 @@ export function DieAdvantage({ advantage, onChange }: DieAdvantageProps) {
       <ToggleButton
         value="DISADVANTAGE"
         sx={{ borderWidth: 0, borderRightWidth: 1 }}
-      >
-        Dis
-      </ToggleButton>
-      <ToggleButton value="ADVANTAGE" sx={{ border: 0 }}>
-        Adv
-      </ToggleButton>
+      >{uiText.dieAdvantage.disadvantage}</ToggleButton>
+      <ToggleButton value="ADVANTAGE" sx={{ border: 0 }}>{uiText.dieAdvantage.advantage}</ToggleButton>
     </ToggleButtonGroup>
   );
 }

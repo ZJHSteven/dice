@@ -7,6 +7,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+
+import { uiText } from "../i18n/text";
 import Stack from "@mui/material/Stack";
 
 import IncreaseIcon from "@mui/icons-material/AddCircleOutlineRounded";
@@ -66,13 +68,13 @@ export function DieBonus({
         <ListItemSecondaryAction>
           <Stack gap={1} direction="row">
             <IconButton
-              aria-label="decrease bonus"
+              aria-label={uiText.dieBonus.decreaseAria}
               onClick={() => onDecrease()}
             >
               <DecreaseIcon />
             </IconButton>
             <IconButton
-              aria-label="increase bonus"
+              aria-label={uiText.dieBonus.increaseAria}
               onClick={() => onIncrease()}
             >
               <IncreaseIcon />
