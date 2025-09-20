@@ -1,8 +1,8 @@
 ---
-title: Dice
-description: Beautiful 3D dice extension for d20 based systems
-author: Owlbear Rodeo
-image: https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/header.jpg
+title: 骰子
+description: 适用于 d20 规则的精美 3D 骰子扩展
+author: ZJHSteven
+image: https://raw.githubusercontent.com/ZJHSteven/dice/main/docs/header.jpg
 icon: https://dice.owlbear.rodeo/logo.png
 tags:
   - built-by-owlbear
@@ -11,42 +11,46 @@ manifest: https://dice.owlbear.rodeo/manifest.json
 learn-more: https://owlbear.app
 ---
 
-# Dice
+# 骰子
 
-Beautiful 3D dice extension for d20 based systems
+> 本项目基于 [Owlbear Rodeo Dice](https://github.com/owlbear-rodeo/dice) 上游仓库翻译为简体中文，原作者为 Owlbear Rodeo。若需提交功能请求或反馈非本地化问题，请访问上游仓库；本仓库仅维护汉化与本地化内容。
 
-You can add dice to your dice tray by clicking one of the dice icons in the left bar.
+适用于 d20 规则的精美 3D 骰子扩展。
 
-When you want to roll the dice simply click the Roll button.
+汉化仓库：<https://github.com/ZJHSteven/dice>。
 
-![roll interface](https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/rolls.jpg)
+点击左侧栏中的骰子图标即可将骰子加入骰子盘。
 
-Once rolled the extension will use a physics simulation to determine the results of the roll.
+想要掷骰时，点击“掷骰”按钮。
 
-**Real-Time Syncing**
+![roll interface](https://raw.githubusercontent.com/ZJHSteven/dice/main/docs/rolls.jpg)
 
-The dice roller will sync this simulation over the network so all connected players can see the roll in real-time.
+掷骰后扩展会使用物理模拟判定结果。
 
-By default other players dice trays will show up as a small preview in the bottom right. You can expand this preview by clicking it.
+**实时同步**
 
-![player roll](https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/player.jpg)
+掷骰器会通过网络同步模拟，使所有连接的玩家实时看到结果。
 
-**Private Rolls**
+默认情况下，其他玩家的骰子盘会以右下角的小预览显示，点击即可展开。
 
-To make a roll privately you can select the eye icon in the sidebar when making a roll.
+![player roll](https://raw.githubusercontent.com/ZJHSteven/dice/main/docs/player.jpg)
 
-**Bonus and Advantage**
+**私密掷骰**
 
-To add a bonus or advantage/disadvantage to your next roll you can click the +/- icon in the sidebar.
+如果想要私密掷骰，可在侧栏选择眼睛图标。
 
-![bonus](https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/bonus.jpg)
+**加值与优势**
 
-**Recent Rolls**
+想为下一次掷骰添加加值或优势/劣势，可点击侧栏的“+/-”图标。
 
-To re-roll one of your recent rolls you can click the search glass icon in the sidebar.
+![bonus](https://raw.githubusercontent.com/ZJHSteven/dice/main/docs/bonus.jpg)
 
-![recent rolls](https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/recent.jpg)
+**最近掷骰**
 
-**Support**
+若想重新掷一次最近的结果，可点击侧栏的放大镜图标。
 
-If you need support for this extension you can email <support@owlbear.rodeo>
+![recent rolls](https://raw.githubusercontent.com/ZJHSteven/dice/main/docs/recent.jpg)
+
+**支持**
+
+如需支持或反馈原功能问题，请发送邮件至 <support@owlbear.rodeo> 并在邮件中注明使用了汉化版本。
