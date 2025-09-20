@@ -44,6 +44,25 @@ export const uiText = {
     emptyTitle: "暂无记录",
     emptyDescription: "掷骰后会自动出现在历史记录中。",
   },
+  extras: {
+    moreAria: "更多扩展选项",
+  },
+  diceHidden: {
+    show: "显示掷骰结果",
+    hide: "隐藏掷骰结果",
+  },
+  dieBonus: {
+    decreaseAria: "降低加值",
+    increaseAria: "提升加值",
+  },
+  dieAdvantage: {
+    aria: "切换优势或劣势",
+    disadvantage: "劣势",
+    advantage: "优势",
+  },
+  diceSetPicker: {
+    changeAria: "切换骰子套装",
+  },
   fairness: {
     panelResults: "结果",
     rollsLabel: "掷骰次数",
@@ -52,7 +71,11 @@ export const uiText = {
     stop: "停止",
     restart: "重新开始",
     explain: "原理说明",
-    export: "导出数据",\n    rolledSeries: "实际次数",\n    expectedSeries: "期望次数",\n    yAxisLabel: "掷骰次数",\n    bonusWarning: "公平性测试不支持加值",
+    export: "导出数据",
+    rolledSeries: "实际次数",
+    expectedSeries: "期望次数",
+    yAxisLabel: "掷骰次数",
+    bonusWarning: "公平性测试不支持加值",
     advantageWarning: "公平性测试不支持优势或劣势",
     selectWarning: "请先选择一个骰子再开始测试",
     lowRollWarning: "掷骰次数过少，统计结果可能不准确。",
