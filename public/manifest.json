@@ -1,13 +1,13 @@
 {
-  "name": "Dice",
+  "name": "骰子",
   "version": "2.0.0",
   "manifest_version": 1,
-  "author": "Owlbear Rodeo",
+  "author": "ZJHSteven",
   "homepage_url": "https://extensions.owlbear.rodeo/dice",
   "icon": "/logo.png",
-  "description": "Beautiful 3D dice extension for d20 based systems",
+  "description": "适用于 d20 规则的精美 3D 骰子扩展",
   "action": {
-    "title": "Dice",
+    "title": "骰子",
     "icon": "/icon.svg",
     "popover": "/",
     "height": 700,
